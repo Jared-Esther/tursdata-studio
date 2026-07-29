@@ -112,6 +112,16 @@ export const pipelineCells = [
   { id: 'cell_05', name: 'render_artifacts', state: 'queued' as const, ms: 0 },
 ]
 
+export const artifactVault = [
+  { id: 'art_01', name: '低利润 SKU 分析报告.pdf', kind: 'PDF', time: '今日 14:08' },
+  { id: 'art_02', name: '供应链董事会汇报.pptx', kind: 'PPT', time: '今日 11:32' },
+  { id: 'art_03', name: '配筋节点大样图.dxf', kind: 'CAD', time: '昨日 18:47' },
+]
+
+export const quickPrompts = ['分析低利润 SKU', '生成可交付 PDF 报告', '预览 CAD 配筋图']
+
+export const reasoningSteps = ['读取表结构', 'Marimo 确定性计算', '渲染右侧画布']
+
 export const exportTargets = [
   { ext: '.xlsx', label: 'Analytical Workbook', detail: 'Excel · 10 sheets' },
   { ext: '.pdf', label: 'Executive Report', detail: 'PDF · 12 pages' },

@@ -1,10 +1,19 @@
 import { Analytics } from '@vercel/analytics/next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { JetBrains_Mono, Noto_Sans_SC } from 'next/font/google'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
-const _geistSans = Geist({ subsets: ['latin'] })
-const _geistMono = Geist_Mono({ subsets: ['latin'] })
+const notoSansSC = Noto_Sans_SC({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700'],
+  variable: '--font-noto-sans-sc',
+  display: 'swap',
+})
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'TursData Studio — Reactive Multi-Table Data Workspace',
@@ -32,7 +41,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   colorScheme: 'dark',
-  themeColor: '#080c14',
+  themeColor: '#090d16',
 }
 
 export default function RootLayout({
@@ -41,7 +50,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark bg-background">
+    <html
+      lang="zh-CN"
+      className={`dark bg-background ${notoSansSC.variable} ${jetbrainsMono.variable}`}
+    >
       <body className="antialiased bg-background text-foreground font-sans">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}

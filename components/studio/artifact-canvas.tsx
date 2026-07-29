@@ -7,7 +7,6 @@ import {
   Download,
   FileText,
   Loader2,
-  Package,
   Presentation,
   Table2,
 } from 'lucide-react'
@@ -21,11 +20,11 @@ import { PdfReport } from './views/pdf-report'
 import { PptDeck } from './views/ppt-deck'
 
 const tabs = [
-  { id: 'table', label: 'Analytical Table', icon: Table2 },
-  { id: 'chart', label: 'Interactive Chart', icon: BarChart3 },
-  { id: 'pdf', label: 'PDF Report', icon: FileText },
-  { id: 'ppt', label: 'PPT Presentation', icon: Presentation },
-  { id: 'cad', label: 'CAD Blueprint', icon: Box },
+  { id: 'table', label: '分析表', caption: 'Analytical Table', icon: Table2 },
+  { id: 'chart', label: '分析图', caption: 'Chart Canvas', icon: BarChart3 },
+  { id: 'pdf', label: 'PDF 报告', caption: 'PDF Report', icon: FileText },
+  { id: 'ppt', label: 'PPT 演讲稿', caption: 'PPT Slide', icon: Presentation },
+  { id: 'cad', label: 'CAD 工程图', caption: 'CAD Blueprint', icon: Box },
 ] as const
 
 type TabId = (typeof tabs)[number]['id']
@@ -34,53 +33,50 @@ export function ArtifactCanvas({ running }: { running: boolean }) {
   const [tab, setTab] = useState<TabId>('table')
 
   return (
-    <section aria-label="Finished Product Vault and Artifacts Canvas" className="flex min-h-0 flex-1 flex-col">
-      <div className="flex flex-wrap items-center gap-3 border-b border-border bg-panel/40 px-4 py-3 backdrop-blur-md">
-        <div className="flex items-center gap-2">
-          <span className="flex size-7 items-center justify-center rounded-lg border border-primary/30 bg-primary/10 text-primary">
-            <Package className="size-4" aria-hidden="true" />
-          </span>
-          <div>
-            <h2 className="text-sm font-semibold tracking-tight">Finished Product Vault</h2>
-            <p className="text-[11px] text-muted-foreground">生产成品库 · Stage 3 — Artifacts canvas</p>
-          </div>
+    <section aria-label="成品展示画布" className="flex min-h-0 min-w-0 flex-1 flex-col">
+      <div className="flex items-stretch gap-2 border-b border-border bg-panel/40 pr-4 backdrop-blur-md">
+        <div
+          className="scroll-thin flex min-w-0 flex-1 gap-1 overflow-x-auto px-3"
+          role="tablist"
+          aria-label="成品类型"
+        >
+          {tabs.map((t) => {
+            const Icon = t.icon
+            const active = tab === t.id
+            return (
+              <button
+                key={t.id}
+                type="button"
+                role="tab"
+                aria-selected={active}
+                onClick={() => setTab(t.id)}
+                className={cn(
+                  'inline-flex h-12 shrink-0 items-center gap-2 border-b-2 px-3 text-xs font-medium transition',
+                  active
+                    ? 'border-primary text-primary'
+                    : 'border-transparent text-muted-foreground hover:text-foreground',
+                )}
+              >
+                <Icon className="size-4" aria-hidden="true" />
+                {t.label}
+                <span className="hidden font-mono text-[9px] uppercase opacity-60 2xl:inline">
+                  {t.caption}
+                </span>
+              </button>
+            )
+          })}
         </div>
-        <div className="ml-auto">
+        <div className="flex shrink-0 items-center border-l border-border pl-4">
           <ExportMenu />
         </div>
-      </div>
-
-      <div className="scroll-thin flex gap-1 overflow-x-auto border-b border-border bg-background/40 px-3 py-2" role="tablist" aria-label="Artifact views">
-        {tabs.map((t) => {
-          const Icon = t.icon
-          const active = tab === t.id
-          return (
-            <button
-              key={t.id}
-              type="button"
-              role="tab"
-              aria-selected={active}
-              onClick={() => setTab(t.id)}
-              className={cn(
-                'inline-flex h-9 shrink-0 items-center gap-2 rounded-xl border px-3 text-xs font-medium transition',
-                active
-                  ? 'border-primary/40 bg-primary/10 text-primary'
-                  : 'border-transparent text-muted-foreground hover:border-border hover:bg-panel/60 hover:text-foreground',
-              )}
-            >
-              <Icon className="size-4" aria-hidden="true" />
-              {t.label}
-            </button>
-          )
-        })}
       </div>
 
       <div className="relative min-h-0 flex-1 p-4">
         {running && (
           <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/70 backdrop-blur-sm">
-            <p className="inline-flex items-center gap-2 rounded-xl border border-accent/30 bg-panel/90 px-4 py-2.5 font-mono text-xs text-accent">
+            <p className="inline-flex items-center gap-2 rounded-xl border border-primary/40 bg-panel/90 px-4 py-2.5 font-mono text-xs text-primary">
               <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-              Marimo recomputing artifacts…
+              Marimo 正在确定性重算…
             </p>
           </div>
         )}
@@ -115,10 +111,10 @@ function ExportMenu() {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-haspopup="menu"
-        className="inline-flex h-9 items-center gap-2 rounded-xl border border-border bg-panel/70 px-3 text-xs font-medium text-foreground transition hover:border-primary/40 hover:text-primary"
+        className="inline-flex h-9 items-center gap-2 rounded-xl border border-border bg-panel/70 px-3 text-xs font-medium text-foreground transition hover:border-primary hover:bg-primary hover:text-primary-foreground"
       >
         <Download className="size-4" aria-hidden="true" />
-        Export Artifacts
+        导出成品
         <ChevronDown className={cn('size-3.5 transition-transform', open && 'rotate-180')} aria-hidden="true" />
       </button>
 
