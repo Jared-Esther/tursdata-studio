@@ -26,6 +26,8 @@
   --color-background: var(--background);
   --color-care: var(--care);
   --color-care-foreground: var(--care-foreground);
+  --color-footer: var(--footer);
+  --color-footer-foreground: var(--footer-foreground);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -35,8 +37,8 @@
 }
 
 /*
-  Press Paws Project — warm, trustworthy non-profit theme (light only).
-  Palette: deep navy authority, warm teal care accent, sage support,
+  Press Paws Project — warm, trustworthy non-profit theme.
+  Palette: deep navy authority, teal care accent, green support,
   high-visibility red reserved exclusively for the Quick Escape control.
 */
 :root {
@@ -62,7 +64,37 @@
   --border: #d7e0ea;
   --input: #cbd5e1;
   --ring: #0284c7;
+  /* The footer band stays deep navy in both themes so it never inverts. */
+  --footer: #0f172a;
+  --footer-foreground: #f8fafc;
   --radius: 0.75rem;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #0b1220;
+  --foreground: #e8eef6;
+  --card: #121c2e;
+  --card-foreground: #e8eef6;
+  --popover: #121c2e;
+  --popover-foreground: #e8eef6;
+  --primary: #e8eef6;
+  --primary-foreground: #0b1220;
+  --secondary: #1c2942;
+  --secondary-foreground: #e8eef6;
+  --muted: #18243a;
+  --muted-foreground: #a3b2c7;
+  --accent: #38bdf8;
+  --accent-foreground: #0b1220;
+  --care: #4ade80;
+  --care-foreground: #0b1220;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #26344c;
+  --input: #33425c;
+  --ring: #38bdf8;
+  --footer: #060c17;
+  --footer-foreground: #e8eef6;
 }
 
 @layer base {
@@ -80,7 +112,7 @@
 
 @layer utilities {
   .soft-grid {
-    background-image: radial-gradient(#d7e0ea 1px, transparent 1px);
+    background-image: radial-gradient(var(--border) 1px, transparent 1px);
     background-size: 24px 24px;
   }
 }
