@@ -72,28 +72,28 @@
 
 .dark {
   color-scheme: dark;
-  --background: #0b1220;
+  --background: #0f172a;
   --foreground: #e8eef6;
-  --card: #121c2e;
+  --card: #16213a;
   --card-foreground: #e8eef6;
-  --popover: #121c2e;
+  --popover: #16213a;
   --popover-foreground: #e8eef6;
   --primary: #e8eef6;
-  --primary-foreground: #0b1220;
-  --secondary: #1c2942;
+  --primary-foreground: #0f172a;
+  --secondary: #1f2d49;
   --secondary-foreground: #e8eef6;
-  --muted: #18243a;
+  --muted: #1b2740;
   --muted-foreground: #a3b2c7;
   --accent: #38bdf8;
-  --accent-foreground: #0b1220;
+  --accent-foreground: #0f172a;
   --care: #4ade80;
-  --care-foreground: #0b1220;
+  --care-foreground: #0f172a;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: #26344c;
-  --input: #33425c;
+  --border: #2a3852;
+  --input: #364560;
   --ring: #38bdf8;
-  --footer: #060c17;
+  --footer: #0a1120;
   --footer-foreground: #e8eef6;
 }
 

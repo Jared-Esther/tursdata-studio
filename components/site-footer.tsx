@@ -1,19 +1,14 @@
 import Link from 'next/link'
-import { MailIcon, MapPinIcon, PhoneIcon, UserIcon } from 'lucide-react'
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-import { BrandMark } from '@/components/site-header'
+import { GlobeIcon, MailIcon, MapPinIcon, UserIcon } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 
 export function SiteFooter() {
   return (
     <footer id="contact" className="border-t border-border bg-footer text-footer-foreground">
       <div className="mx-auto max-w-6xl px-4 py-14 md:px-6">
-        <div className="grid gap-10 lg:grid-cols-3">
+        <div className="grid gap-10 md:grid-cols-2 md:gap-16">
           <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-3">
-              <BrandMark className="bg-footer-foreground text-footer" />
-              <span className="text-lg font-bold">Press Paws Project</span>
-            </div>
+            <span className="text-lg font-bold tracking-tight">Press Paws Project</span>
             <p className="text-sm leading-relaxed text-footer-foreground/75">
               Registered Australian non-profit removing a critical safety barrier
               for domestic violence survivors, so people and their companion
@@ -34,10 +29,14 @@ export function SiteFooter() {
                 <MailIcon aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-footer-foreground/60" />
                 <a
                   href="mailto:info@presspawsproject.org.au"
-                  className="underline underline-offset-4 hover:text-footer-foreground/80"
+                  className="no-underline transition-colors hover:text-footer-foreground/80 hover:underline hover:underline-offset-4"
                 >
                   info@presspawsproject.org.au
                 </a>
+              </li>
+              <li className="flex items-start gap-3">
+                <GlobeIcon aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-footer-foreground/60" />
+                <span className="font-semibold">presspawsproject.org.au</span>
               </li>
               <li className="flex items-start gap-3">
                 <MapPinIcon aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-footer-foreground/60" />
@@ -47,22 +46,22 @@ export function SiteFooter() {
             <nav aria-label="Footer navigation">
               <ul className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-footer-foreground/75">
                 <li>
-                  <Link href="/#mission" className="underline underline-offset-4 hover:text-footer-foreground">
+                  <Link href="/#mission" className="no-underline transition-colors hover:text-footer-foreground hover:underline hover:underline-offset-4">
                     Our Mission
                   </Link>
                 </li>
                 <li>
-                  <Link href="/get-help" className="underline underline-offset-4 hover:text-footer-foreground">
+                  <Link href="/get-help" className="no-underline transition-colors hover:text-footer-foreground hover:underline hover:underline-offset-4">
                     Get Help
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#foster" className="underline underline-offset-4 hover:text-footer-foreground">
+                  <Link href="/#foster" className="no-underline transition-colors hover:text-footer-foreground hover:underline hover:underline-offset-4">
                     Become a Foster
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#donate" className="underline underline-offset-4 hover:text-footer-foreground">
+                  <Link href="/#donate" className="no-underline transition-colors hover:text-footer-foreground hover:underline hover:underline-offset-4">
                     Donate
                   </Link>
                 </li>
@@ -70,25 +69,6 @@ export function SiteFooter() {
             </nav>
           </div>
 
-          <Alert variant="destructive" className="bg-background">
-            <PhoneIcon />
-            <AlertTitle>In immediate danger? Call 000.</AlertTitle>
-            <AlertDescription>
-              <p>
-                National Domestic Violence Line:{' '}
-                <a href="tel:1800737732" className="font-semibold underline underline-offset-4">
-                  1800 737 732
-                </a>{' '}
-                (1800RESPECT) — free and confidential, 24 hours a day.
-              </p>
-              <p>
-                Lifeline:{' '}
-                <a href="tel:131114" className="font-semibold underline underline-offset-4">
-                  13 11 14
-                </a>
-              </p>
-            </AlertDescription>
-          </Alert>
         </div>
 
         <Separator className="my-8 bg-footer-foreground/15" />

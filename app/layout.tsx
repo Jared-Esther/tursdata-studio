@@ -1,6 +1,5 @@
 import { Analytics } from '@vercel/analytics/next'
 import { Source_Sans_3 } from 'next/font/google'
-import { ThemeProvider } from 'next-themes'
 import type { Metadata, Viewport } from 'next'
 import { QuickEscape } from '@/components/quick-escape'
 import { Toaster } from '@/components/ui/sonner'
@@ -28,12 +27,11 @@ export const metadata: Metadata = {
   },
 }
 
+// The site is locked to the dark navy palette: it keeps the screen discreet at
+// night and avoids a bright flash if a survivor opens the site near an abuser.
 export const viewport: Viewport = {
-  colorScheme: 'light dark',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f8fafc' },
-    { media: '(prefers-color-scheme: dark)', color: '#0b1220' },
-  ],
+  colorScheme: 'dark',
+  themeColor: '#0f172a',
 }
 
 export default function RootLayout({
@@ -42,23 +40,17 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html
-      lang="en-AU"
-      suppressHydrationWarning
-      className={`bg-background ${sourceSans.variable}`}
-    >
+    <html lang="en-AU" className={`dark bg-background ${sourceSans.variable}`}>
       <body className="antialiased bg-background text-foreground font-sans">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <a
-            href="#main"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
-          >
-            Skip to main content
-          </a>
-          {children}
-          <QuickEscape />
-          <Toaster position="top-center" />
-        </ThemeProvider>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+        >
+          Skip to main content
+        </a>
+        {children}
+        <QuickEscape />
+        <Toaster position="top-center" theme="dark" />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
