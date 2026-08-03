@@ -42,6 +42,14 @@ const CONTACT_WINDOWS = [
   { value: 'any', label: 'Any time is safe' },
 ]
 
+const ANIMAL_TYPES = [
+  { value: 'dog', label: 'Dog' },
+  { value: 'cat', label: 'Cat' },
+  { value: 'both', label: 'Dogs and cats' },
+  { value: 'small', label: 'Small animal or bird' },
+  { value: 'other', label: 'Other or multiple species' },
+]
+
 export function EmergencyHelpForm() {
   const [contactMethod, setContactMethod] = useState<string[]>(['text'])
   const [immediateDanger, setImmediateDanger] = useState(false)
@@ -50,6 +58,7 @@ export function EmergencyHelpForm() {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setSubmitted(true)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
     toast.success('Confidential request received', {
       description: 'A placement coordinator will make contact only in your chosen window.',
     })
@@ -150,7 +159,7 @@ export function EmergencyHelpForm() {
             <Field>
               <FieldLabel htmlFor="contact-window">Safe contact window</FieldLabel>
               <Select name="contactWindow" defaultValue="any" items={CONTACT_WINDOWS}>
-                <SelectTrigger id="contact-window">
+                <SelectTrigger id="contact-window" className="w-full">
                   <SelectValue placeholder="When is it safe to contact you?" />
                 </SelectTrigger>
                 <SelectContent>

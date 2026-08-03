@@ -70,7 +70,7 @@ export function QuickEscape() {
       <div className="pointer-events-none fixed top-3 right-3 z-90 hidden md:block">
         <EscapeButton />
       </div>
-      <div className="pointer-events-none fixed right-3 bottom-3 z-90">
+      <div className="pointer-events-none fixed right-3 bottom-3 z-90 md:hidden">
         <EscapeButton />
       </div>
       <p className="sr-only" aria-live="polite">

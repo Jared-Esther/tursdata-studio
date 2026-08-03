@@ -26,6 +26,13 @@ import {
 } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 
+const HOUSING_TYPES = [
+  { value: 'house-yard', label: 'House with fenced yard' },
+  { value: 'house-no-yard', label: 'House, no yard' },
+  { value: 'apartment', label: 'Apartment or unit' },
+  { value: 'rural', label: 'Rural or acreage' },
+]
+
 export function FosterSection() {
   const [agreed, setAgreed] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -33,6 +40,7 @@ export function FosterSection() {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setSubmitted(true)
+    document.getElementById('foster')?.scrollIntoView({ behavior: 'smooth' })
     toast.success('Thank you for offering a safe home', {
       description: 'Our volunteer team will be in touch about screening and training.',
     })
@@ -138,19 +146,20 @@ export function FosterSection() {
                     </Field>
                     <Field>
                       <FieldLabel htmlFor="foster-housing">Housing type</FieldLabel>
-                      <Select name="fosterHousing" defaultValue="house-yard">
-                        <SelectTrigger id="foster-housing">
-                          <SelectValue placeholder="Select housing type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectGroup>
-                            <SelectItem value="house-yard">House with fenced yard</SelectItem>
-                            <SelectItem value="house-no-yard">House, no yard</SelectItem>
-                            <SelectItem value="apartment">Apartment or unit</SelectItem>
-                            <SelectItem value="rural">Rural or acreage</SelectItem>
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
+                <Select name="fosterHousing" defaultValue="house-yard" items={HOUSING_TYPES}>
+                  <SelectTrigger id="foster-housing" className="w-full">
+                    <SelectValue placeholder="Select housing type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      {HOUSING_TYPES.map((housing) => (
+                        <SelectItem key={housing.value} value={housing.value}>
+                          {housing.label}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
                     </Field>
                   </Field>
 
