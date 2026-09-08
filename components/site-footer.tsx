@@ -34,8 +34,16 @@ export function SiteFooter() {
                   Registration
                 </dt>
                 <dd>
-                  Registered Australian charity with the Australian Charities and
-                  Not-for-profits Commission (ACNC).
+                  Registered Australian charity with the{' '}
+                  <a
+                    href="https://www.acnc.gov.au/charity/charities"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-4 transition-colors hover:text-footer-foreground"
+                  >
+                    Australian Charities and Not-for-profits Commission (ACNC)
+                  </a>
+                  .
                 </dd>
               </div>
               <div className="flex flex-col gap-0.5">

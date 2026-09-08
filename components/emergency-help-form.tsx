@@ -80,10 +80,14 @@ export function EmergencyHelpForm() {
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
+          <p className="text-base leading-relaxed text-foreground">
+            Your confidential request has been securely submitted. Our placement
+            coordinator will reach out discreetly using your specified contact
+            method.
+          </p>
           <p className="text-base leading-relaxed text-muted-foreground">
-            A trained placement coordinator will reach out using only the contact
-            method and time window you selected. If someone answers who is not
-            you, we will end the call without naming this organisation.
+            If someone answers who is not you, we will end the call without
+            naming this organisation.
           </p>
           <Alert>
             <TriangleAlertIcon />

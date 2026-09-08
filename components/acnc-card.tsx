@@ -12,7 +12,6 @@ const REGISTRY = [
 const SUBTYPES = [
   'Advancing Social or Public Welfare',
   'Preventing or Relieving the Suffering of Animals',
-  'Advancing Education',
 ]
 
 export function AcncCard() {

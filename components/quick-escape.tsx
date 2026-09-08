@@ -5,7 +5,7 @@ import { XIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const SAFE_URL = 'https://www.google.com.au'
-const DOUBLE_TAP_WINDOW_MS = 500
+const DOUBLE_TAP_WINDOW_MS = 800
 
 /**
  * Replaces the current history entry so the visit to this site is not left as
