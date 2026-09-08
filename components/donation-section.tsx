@@ -21,9 +21,9 @@ export function DonationSection() {
   const resolvedAmount = isCustom ? customAmount || '0' : amount[0]
 
   const mailtoHref = `mailto:${DONATE_EMAIL}?subject=${encodeURIComponent(
-    'Donation enquiry — bank transfer details',
+    'EFT Donation Inquiry - Press Paws Project',
   )}&body=${encodeURIComponent(
-    `Hello Press Paws Project,\n\nI would like to donate $${resolvedAmount} (AUD) by direct bank transfer. Please send me your secure EFT details.\n\nThank you.`,
+    `Hi Press Paws Project Team,\n\nI would like to request your direct bank transfer details to support your emergency pet foster programs.\n\nThank you.`,
   )}`
 
   return (

@@ -34,7 +34,7 @@ export function CrisisResources() {
       className="rounded-xl border border-border bg-secondary/40 p-4 md:p-5"
     >
       <h2 className="mb-3 text-sm font-semibold tracking-wide text-muted-foreground uppercase">
-        Immediate crisis support
+        External national crisis helplines (24/7)
       </h2>
       <ul className="grid gap-3 sm:grid-cols-3">
         {RESOURCES.map((resource) => (
