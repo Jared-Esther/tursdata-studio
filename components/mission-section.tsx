@@ -2,8 +2,11 @@ import {
   BanknoteIcon,
   ClockIcon,
   EyeOffIcon,
+  GraduationCapIcon,
   HomeIcon,
+  MegaphoneIcon,
   ShieldCheckIcon,
+  UsersIcon,
 } from 'lucide-react'
 import {
   Card,
@@ -34,6 +37,27 @@ const IMPACT = [
   },
 ]
 
+const ADVOCACY = [
+  {
+    icon: UsersIcon,
+    title: 'Sector Training',
+    description:
+      'We partner with family violence shelters, crisis hotlines and local police to build pet safety planning into their intake protocols.',
+  },
+  {
+    icon: GraduationCapIcon,
+    title: 'Public Education',
+    description:
+      'We raise awareness of the well-documented statistical link between animal abuse and domestic and family violence.',
+  },
+  {
+    icon: MegaphoneIcon,
+    title: 'Systemic Advocacy',
+    description:
+      'We champion pet-inclusive crisis housing and reforms to crisis-response systems across Australia.',
+  },
+]
+
 export function MissionSection() {
   return (
     <section id="mission" className="mx-auto max-w-6xl px-4 py-14 md:px-6 md:py-20">
@@ -45,8 +69,10 @@ export function MissionSection() {
           Removing a critical safety barrier for domestic violence survivors.
         </h2>
         <p className="max-w-3xl text-lg leading-relaxed text-pretty text-muted-foreground">
-          Press Paws Project arranges emergency housing and foster care for
-          companion animals, ensuring humans and pets escape abuse together.
+          In line with our registered Constitution, Press Paws Project pursues
+          three charitable purposes: advancing social and public welfare,
+          relieving the suffering of animals, and educating the community — so
+          humans and pets escape abuse together.
         </p>
       </div>
 
@@ -55,9 +81,12 @@ export function MissionSection() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-xl">
               <ShieldCheckIcon aria-hidden="true" className="size-5 text-destructive" />
-              The barrier
+              Advancing social &amp; public welfare
             </CardTitle>
-            <CardDescription>Why people stay longer than they want to.</CardDescription>
+            <CardDescription>
+              Emergency, anonymous accommodation for pets so victim-survivors can
+              leave without delay.
+            </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-4 text-base leading-relaxed text-muted-foreground">
             <p>
@@ -78,15 +107,19 @@ export function MissionSection() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-xl">
               <HomeIcon aria-hidden="true" className="size-5 text-care" />
-              Our solution
+              Animal welfare &amp; crisis relief
             </CardTitle>
-            <CardDescription>Safe, temporary, anonymous foster homes.</CardDescription>
+            <CardDescription>
+              Shielding vulnerable animals from retaliatory violence, abuse,
+              neglect and abandonment.
+            </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-4 text-base leading-relaxed text-muted-foreground">
             <p>
               We match each pet with a screened, background-checked foster
-              household. Fosters are never told the survivor&apos;s identity or
-              location, and the survivor is never told the foster address.
+              household and provide prompt veterinary care. Fosters are never told
+              the survivor&apos;s identity or location, and the survivor is never
+              told the foster address.
             </p>
             <p>
               Care continues for as long as it takes to find safe permanent
@@ -104,6 +137,40 @@ export function MissionSection() {
               <span
                 aria-hidden="true"
                 className="flex size-11 items-center justify-center rounded-xl bg-secondary text-accent"
+              >
+                <item.icon className="size-5" />
+              </span>
+              <CardTitle className="mt-3">{item.title}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                {item.description}
+              </p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      <div className="mt-14 flex flex-col gap-3">
+        <span className="text-sm font-semibold tracking-wide text-care uppercase">
+          Community Education &amp; Advocacy
+        </span>
+        <h3 className="max-w-3xl text-2xl font-bold tracking-tight text-balance text-foreground md:text-3xl">
+          Beyond Direct Care: Education &amp; Frontline Advocacy
+        </h3>
+        <p className="max-w-3xl text-base leading-relaxed text-pretty text-muted-foreground">
+          Rescue is only part of the work. We also help the wider crisis-response
+          system recognise pets as a barrier to safety — and change it.
+        </p>
+      </div>
+
+      <div className="mt-8 grid gap-6 md:grid-cols-3">
+        {ADVOCACY.map((item) => (
+          <Card key={item.title} className="border-t-4 border-t-care">
+            <CardHeader>
+              <span
+                aria-hidden="true"
+                className="flex size-11 items-center justify-center rounded-xl bg-care/15 text-care"
               >
                 <item.icon className="size-5" />
               </span>

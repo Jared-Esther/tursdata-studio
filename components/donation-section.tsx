@@ -1,8 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { CreditCardIcon, HeartIcon, LockIcon } from 'lucide-react'
-import { toast } from 'sonner'
+import { HeartIcon, LandmarkIcon, MailIcon, ShieldCheckIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Field, FieldDescription, FieldGroup, FieldLabel } from '@/components/ui/field'
@@ -12,21 +11,19 @@ import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 
 const PRESET_AMOUNTS = ['25', '50', '100']
 
+const BANK_DETAILS = [
+  { label: 'Account name', value: 'PRESS PAWS PROJECT INCORPORATED' },
+  { label: 'Bank', value: 'Commonwealth Bank of Australia' },
+  { label: 'BSB', value: '[To be configured]' },
+  { label: 'Account number', value: '[To be configured]' },
+]
+
 export function DonationSection() {
-  const [frequency, setFrequency] = useState<string[]>(['monthly'])
   const [amount, setAmount] = useState<string[]>(['50'])
   const [customAmount, setCustomAmount] = useState('')
 
   const isCustom = amount[0] === 'custom'
   const resolvedAmount = isCustom ? customAmount || '0' : amount[0]
-  const isMonthly = frequency[0] === 'monthly'
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    toast.success('Demo checkout only', {
-      description: `This layout is a mock. No payment of $${resolvedAmount} was processed.`,
-    })
-  }
 
   return (
     <section id="donate" className="mx-auto max-w-6xl px-4 py-14 md:px-6 md:py-20">
@@ -75,145 +72,117 @@ export function DonationSection() {
               </div>
             ))}
           </dl>
+
+          <p className="flex items-center gap-2 text-sm text-muted-foreground">
+            <ShieldCheckIcon aria-hidden="true" className="size-4 shrink-0 text-care" />
+            Registered Australian charity — donations directly fund crisis pet care.
+          </p>
         </div>
 
         <Card>
           <CardHeader>
             <CardTitle className="text-2xl">Make a donation</CardTitle>
             <CardDescription>
-              Australian non-profit. Card details below are a demonstration layout only.
+              Choose an amount, then give securely by direct bank transfer (EFT).
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-              <FieldGroup>
-                <Field>
-                  <FieldLabel htmlFor="donation-frequency">Giving frequency</FieldLabel>
-                  <ToggleGroup
-                    id="donation-frequency"
-                    value={frequency}
-                    onValueChange={(value) => setFrequency(value.length ? value : ['monthly'])}
-                    variant="outline"
-                    className="w-full"
-                  >
-                    <ToggleGroupItem value="once" className="flex-1">
-                      One-time
+          <CardContent className="flex flex-col gap-6">
+            <FieldGroup>
+              <Field>
+                <FieldLabel htmlFor="donation-amount">Amount (AUD)</FieldLabel>
+                <ToggleGroup
+                  id="donation-amount"
+                  value={amount}
+                  onValueChange={(value) => setAmount(value.length ? value : ['50'])}
+                  variant="outline"
+                  className="w-full"
+                >
+                  {PRESET_AMOUNTS.map((preset) => (
+                    <ToggleGroupItem key={preset} value={preset} className="flex-1">
+                      ${preset}
                     </ToggleGroupItem>
-                    <ToggleGroupItem value="monthly" className="flex-1">
-                      Monthly
-                    </ToggleGroupItem>
-                  </ToggleGroup>
-                  <FieldDescription>
-                    {isMonthly
-                      ? 'Monthly giving lets us commit to placements before donations arrive.'
-                      : 'A single gift, charged once.'}
-                  </FieldDescription>
-                </Field>
+                  ))}
+                  <ToggleGroupItem value="custom" className="flex-1">
+                    Custom
+                  </ToggleGroupItem>
+                </ToggleGroup>
+                <FieldDescription>
+                  Use the amount below as your transfer reference so we can thank you.
+                </FieldDescription>
+              </Field>
 
+              {isCustom ? (
                 <Field>
-                  <FieldLabel htmlFor="donation-amount">Amount (AUD)</FieldLabel>
-                  <ToggleGroup
-                    id="donation-amount"
-                    value={amount}
-                    onValueChange={(value) => setAmount(value.length ? value : ['50'])}
-                    variant="outline"
-                    className="w-full"
-                  >
-                    {PRESET_AMOUNTS.map((preset) => (
-                      <ToggleGroupItem key={preset} value={preset} className="flex-1">
-                        ${preset}
-                      </ToggleGroupItem>
-                    ))}
-                    <ToggleGroupItem value="custom" className="flex-1">
-                      Custom
-                    </ToggleGroupItem>
-                  </ToggleGroup>
-                </Field>
-
-                {isCustom ? (
-                  <Field>
-                    <FieldLabel htmlFor="custom-amount">Custom amount</FieldLabel>
-                    <Input
-                      id="custom-amount"
-                      name="customAmount"
-                      type="number"
-                      min={1}
-                      step={1}
-                      value={customAmount}
-                      onChange={(event) => setCustomAmount(event.target.value)}
-                      placeholder="Enter an amount in AUD"
-                    />
-                  </Field>
-                ) : null}
-              </FieldGroup>
-
-              <Separator />
-
-              <div className="flex flex-col gap-3">
-                <Button type="button" variant="outline" size="lg" className="w-full" onClick={() =>
-                  toast.info('Apple Pay is not enabled in this demo')
-                }>
-                  Pay with Apple Pay
-                </Button>
-                <div className="flex items-center gap-3">
-                  <Separator className="flex-1" />
-                  <span className="text-xs text-muted-foreground">or pay by card</span>
-                  <Separator className="flex-1" />
-                </div>
-              </div>
-
-              <FieldGroup>
-                <Field>
-                  <FieldLabel htmlFor="card-number">Card number</FieldLabel>
+                  <FieldLabel htmlFor="custom-amount">Custom amount</FieldLabel>
                   <Input
-                    id="card-number"
-                    name="cardNumber"
-                    inputMode="numeric"
-                    autoComplete="cc-number"
-                    placeholder="4242 4242 4242 4242"
+                    id="custom-amount"
+                    name="customAmount"
+                    type="number"
+                    min={1}
+                    step={1}
+                    value={customAmount}
+                    onChange={(event) => setCustomAmount(event.target.value)}
+                    placeholder="Enter an amount in AUD"
                   />
                 </Field>
-                <Field orientation="responsive">
-                  <Field>
-                    <FieldLabel htmlFor="card-expiry">Expiry</FieldLabel>
-                    <Input
-                      id="card-expiry"
-                      name="cardExpiry"
-                      autoComplete="cc-exp"
-                      placeholder="MM / YY"
-                    />
-                  </Field>
-                  <Field>
-                    <FieldLabel htmlFor="card-cvc">CVC</FieldLabel>
-                    <Input
-                      id="card-cvc"
-                      name="cardCvc"
-                      autoComplete="cc-csc"
-                      placeholder="123"
-                    />
-                  </Field>
-                  <Field>
-                    <FieldLabel htmlFor="card-postcode">Postcode</FieldLabel>
-                    <Input id="card-postcode" name="cardPostcode" placeholder="2229" />
-                  </Field>
-                </Field>
-              </FieldGroup>
+              ) : null}
+            </FieldGroup>
 
+            <Separator />
+
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center gap-2">
+                <LandmarkIcon aria-hidden="true" className="size-5 text-accent" />
+                <h3 className="text-base font-semibold text-foreground">
+                  Direct bank transfer (EFT)
+                </h3>
+              </div>
+              <dl className="divide-y divide-border rounded-xl border border-border bg-secondary/40">
+                {BANK_DETAILS.map((detail) => (
+                  <div
+                    key={detail.label}
+                    className="flex flex-col gap-0.5 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+                  >
+                    <dt className="text-sm text-muted-foreground">{detail.label}</dt>
+                    <dd className="text-sm font-semibold text-foreground sm:text-right">
+                      {detail.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="text-sm text-muted-foreground">
+                Please use <strong className="text-foreground">${resolvedAmount}</strong> as
+                a guide for your gift and add &ldquo;Donation&rdquo; as the reference.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-3">
               <Button
-                type="submit"
+                nativeButton={false}
                 size="lg"
                 className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+                render={
+                  <a href="mailto:info@presspawsproject.org.au?subject=Donation%20via%20Secure%20Portal" />
+                }
               >
-                <CreditCardIcon data-icon="inline-start" />
-                Donate ${resolvedAmount}
-                {isMonthly ? ' monthly' : ''}
+                Donate via Secure Portal
               </Button>
+              <Button
+                nativeButton={false}
+                size="lg"
+                variant="outline"
+                className="w-full"
+                render={<a href="mailto:info@presspawsproject.org.au?subject=Donation%20enquiry" />}
+              >
+                <MailIcon data-icon="inline-start" />
+                Contact Us to Donate
+              </Button>
+            </div>
 
-              <p className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
-                <LockIcon aria-hidden="true" className="size-3.5" />
-                Demonstration checkout — no card data is transmitted or stored.
-              </p>
-            </form>
+            <p className="flex items-center justify-center gap-2 text-center text-xs text-muted-foreground">
+              <ShieldCheckIcon aria-hidden="true" className="size-3.5 shrink-0" />
+              PRESS PAWS PROJECT INCORPORATED · ABN 83 100 528 601 · Registered ACNC charity.
+            </p>
           </CardContent>
         </Card>
       </div>
