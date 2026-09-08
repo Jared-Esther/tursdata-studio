@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { DonationSection } from '@/components/donation-section'
 import { FosterSection } from '@/components/foster-section'
 import { HeroSection } from '@/components/hero-section'
+import { ImpactGallery } from '@/components/impact-gallery'
 import { MissionSection } from '@/components/mission-section'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
@@ -37,6 +38,7 @@ export default function Page() {
           </Alert>
         </section>
 
+        <ImpactGallery />
         <FosterSection />
         <DonationSection />
       </main>

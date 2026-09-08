@@ -10,10 +10,52 @@ export function SiteFooter() {
           <div className="flex flex-col gap-4">
             <span className="text-lg font-bold tracking-tight">Press Paws Project</span>
             <p className="text-sm leading-relaxed text-footer-foreground/75">
-              Registered Australian non-profit removing a critical safety barrier
-              for domestic violence survivors, so people and their companion
-              animals escape abuse together.
+              Registered Australian charity removing a critical safety barrier for
+              domestic violence survivors, so people and their companion animals
+              escape abuse together.
             </p>
+            <dl className="flex flex-col gap-2 text-sm text-footer-foreground/75">
+              <div className="flex flex-col gap-0.5">
+                <dt className="text-xs tracking-wide uppercase text-footer-foreground/50">
+                  Legal entity
+                </dt>
+                <dd className="font-semibold text-footer-foreground">
+                  PRESS PAWS PROJECT INCORPORATED
+                </dd>
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <dt className="text-xs tracking-wide uppercase text-footer-foreground/50">
+                  ABN
+                </dt>
+                <dd className="font-semibold text-footer-foreground">83 100 528 601</dd>
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <dt className="text-xs tracking-wide uppercase text-footer-foreground/50">
+                  Registration
+                </dt>
+                <dd>
+                  Registered Australian charity with the Australian Charities and
+                  Not-for-profits Commission (ACNC).
+                </dd>
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <dt className="text-xs tracking-wide uppercase text-footer-foreground/50">
+                  Governing law
+                </dt>
+                <dd>
+                  Incorporated in NSW under the Associations Incorporation Act 2009.
+                </dd>
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <dt className="text-xs tracking-wide uppercase text-footer-foreground/50">
+                  Charitable subtypes
+                </dt>
+                <dd>
+                  Advancing Social or Public Welfare · Preventing or Relieving the
+                  Suffering of Animals
+                </dd>
+              </div>
+            </dl>
           </div>
 
           <div className="flex flex-col gap-4">
@@ -73,8 +115,17 @@ export function SiteFooter() {
 
         <Separator className="my-8 bg-footer-foreground/15" />
 
+        <p className="text-sm leading-relaxed text-footer-foreground/75">
+          Press Paws Project operates strictly on a not-for-profit basis. All
+          foster placements, crisis relief, and volunteer opportunities are
+          provided without discrimination based on race, religion, gender, sexual
+          orientation, disability, or national origin.
+        </p>
+
+        <Separator className="my-8 bg-footer-foreground/15" />
+
         <div className="flex flex-col gap-2 text-xs text-footer-foreground/60 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Press Paws Project. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Press Paws Project Incorporated · ABN 83 100 528 601.</p>
           <p>presspawsproject.org.au · Press ESC twice to leave this site instantly.</p>
         </div>
       </div>
