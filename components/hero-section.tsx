@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { HeartHandshakeIcon, LifeBuoyIcon, LockIcon } from 'lucide-react'
+import { HeartIcon, LifeBuoyIcon, LockIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export function HeroSection() {
@@ -31,24 +31,16 @@ export function HeroSection() {
               className="bg-accent text-accent-foreground hover:bg-accent/90"
             >
               <LifeBuoyIcon data-icon="inline-start" />
-              Get Emergency Help Now
+              Get Emergency Help
             </Button>
             <Button
               size="lg"
               variant="outline"
               nativeButton={false}
-              render={<Link href="/#foster" />}
+              render={<Link href="/donate" />}
             >
-              <HeartHandshakeIcon data-icon="inline-start" />
-              Become a Foster Caregiver
-            </Button>
-            <Button
-              size="lg"
-              variant="ghost"
-              nativeButton={false}
-              render={<Link href="/#donate" />}
-            >
-              Donate Today
+              <HeartIcon data-icon="inline-start" />
+              Support Our Work
             </Button>
           </div>
 

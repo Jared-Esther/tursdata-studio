@@ -88,8 +88,13 @@ export function SiteFooter() {
             <nav aria-label="Footer navigation">
               <ul className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-footer-foreground/75">
                 <li>
-                  <Link href="/#mission" className="no-underline transition-colors hover:text-footer-foreground hover:underline hover:underline-offset-4">
+                  <Link href="/our-mission" className="no-underline transition-colors hover:text-footer-foreground hover:underline hover:underline-offset-4">
                     Our Mission
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/programs" className="no-underline transition-colors hover:text-footer-foreground hover:underline hover:underline-offset-4">
+                    Programs
                   </Link>
                 </li>
                 <li>
@@ -98,12 +103,7 @@ export function SiteFooter() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#foster" className="no-underline transition-colors hover:text-footer-foreground hover:underline hover:underline-offset-4">
-                    Become a Foster
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/#donate" className="no-underline transition-colors hover:text-footer-foreground hover:underline hover:underline-offset-4">
+                  <Link href="/donate" className="no-underline transition-colors hover:text-footer-foreground hover:underline hover:underline-offset-4">
                     Donate
                   </Link>
                 </li>

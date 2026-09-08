@@ -11,12 +11,7 @@ import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 
 const PRESET_AMOUNTS = ['25', '50', '100']
 
-const BANK_DETAILS = [
-  { label: 'Account name', value: 'PRESS PAWS PROJECT INCORPORATED' },
-  { label: 'Bank', value: 'Commonwealth Bank of Australia' },
-  { label: 'BSB', value: '[To be configured]' },
-  { label: 'Account number', value: '[To be configured]' },
-]
+const DONATE_EMAIL = 'info@presspawsproject.org.au'
 
 export function DonationSection() {
   const [amount, setAmount] = useState<string[]>(['50'])
@@ -25,21 +20,33 @@ export function DonationSection() {
   const isCustom = amount[0] === 'custom'
   const resolvedAmount = isCustom ? customAmount || '0' : amount[0]
 
+  const mailtoHref = `mailto:${DONATE_EMAIL}?subject=${encodeURIComponent(
+    'Donation enquiry — bank transfer details',
+  )}&body=${encodeURIComponent(
+    `Hello Press Paws Project,\n\nI would like to donate $${resolvedAmount} (AUD) by direct bank transfer. Please send me your secure EFT details.\n\nThank you.`,
+  )}`
+
   return (
-    <section id="donate" className="mx-auto max-w-6xl px-4 py-14 md:px-6 md:py-20">
+    <section
+      aria-labelledby="donate-heading"
+      className="mx-auto max-w-6xl px-4 py-14 md:px-6 md:py-20"
+    >
       <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-4">
             <span className="text-sm font-semibold tracking-wide text-accent uppercase">
-              Donate
+              Impact Tiers
             </span>
-            <h2 className="text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl">
+            <h2
+              id="donate-heading"
+              className="text-3xl font-bold tracking-tight text-balance text-foreground md:text-4xl"
+            >
               Your donation buys a survivor time to leave safely.
             </h2>
             <p className="text-lg leading-relaxed text-pretty text-muted-foreground">
               Every placement is free to the person escaping abuse. Donations pay
-              for the food, bedding, boarding and veterinary care that make that
-              possible.
+              for the transport, food, bedding, boarding and veterinary care that
+              make that possible.
             </p>
           </div>
 
@@ -81,9 +88,9 @@ export function DonationSection() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-2xl">Make a donation</CardTitle>
+            <CardTitle className="text-2xl">Give by bank transfer</CardTitle>
             <CardDescription>
-              Choose an amount, then give securely by direct bank transfer (EFT).
+              Choose an amount, then request our secure EFT details by email.
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-6">
@@ -107,7 +114,7 @@ export function DonationSection() {
                   </ToggleGroupItem>
                 </ToggleGroup>
                 <FieldDescription>
-                  Use the amount below as your transfer reference so we can thank you.
+                  This amount is included in your email so we can thank you.
                 </FieldDescription>
               </Field>
 
@@ -134,50 +141,27 @@ export function DonationSection() {
               <div className="flex items-center gap-2">
                 <LandmarkIcon aria-hidden="true" className="size-5 text-accent" />
                 <h3 className="text-base font-semibold text-foreground">
-                  Direct bank transfer (EFT)
+                  Discrete direct transfer (EFT)
                 </h3>
               </div>
-              <dl className="divide-y divide-border rounded-xl border border-border bg-secondary/40">
-                {BANK_DETAILS.map((detail) => (
-                  <div
-                    key={detail.label}
-                    className="flex flex-col gap-0.5 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
-                  >
-                    <dt className="text-sm text-muted-foreground">{detail.label}</dt>
-                    <dd className="text-sm font-semibold text-foreground sm:text-right">
-                      {detail.value}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-              <p className="text-sm text-muted-foreground">
-                Please use <strong className="text-foreground">${resolvedAmount}</strong> as
-                a guide for your gift and add &ldquo;Donation&rdquo; as the reference.
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                For your security and ours, we share bank details privately. Email
+                us and we&apos;ll reply with our account name, BSB and account
+                number so you can transfer{' '}
+                <strong className="text-foreground">${resolvedAmount}</strong>{' '}
+                directly.
               </p>
             </div>
 
-            <div className="flex flex-col gap-3">
-              <Button
-                nativeButton={false}
-                size="lg"
-                className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
-                render={
-                  <a href="mailto:info@presspawsproject.org.au?subject=Donation%20via%20Secure%20Portal" />
-                }
-              >
-                Donate via Secure Portal
-              </Button>
-              <Button
-                nativeButton={false}
-                size="lg"
-                variant="outline"
-                className="w-full"
-                render={<a href="mailto:info@presspawsproject.org.au?subject=Donation%20enquiry" />}
-              >
-                <MailIcon data-icon="inline-start" />
-                Contact Us to Donate
-              </Button>
-            </div>
+            <Button
+              nativeButton={false}
+              size="lg"
+              className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+              render={<a href={mailtoHref} />}
+            >
+              <MailIcon data-icon="inline-start" />
+              Email us for transfer details
+            </Button>
 
             <p className="flex items-center justify-center gap-2 text-center text-xs text-muted-foreground">
               <ShieldCheckIcon aria-hidden="true" className="size-3.5 shrink-0" />
