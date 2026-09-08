@@ -2,6 +2,8 @@ import { Analytics } from '@vercel/analytics/next'
 import { Source_Sans_3 } from 'next/font/google'
 import type { Metadata, Viewport } from 'next'
 import { QuickEscape } from '@/components/quick-escape'
+import { SiteFooter } from '@/components/site-footer'
+import { SiteHeader } from '@/components/site-header'
 import { Toaster } from '@/components/ui/sonner'
 import './globals.css'
 
@@ -48,7 +50,9 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+        <SiteHeader />
         {children}
+        <SiteFooter />
         <QuickEscape />
         <Toaster position="top-center" theme="dark" />
         {process.env.NODE_ENV === 'production' && <Analytics />}
